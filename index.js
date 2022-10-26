@@ -6,31 +6,44 @@ const KICK = new Audio("./sounds/kick.mp3");
 const SNARE = new Audio("./sounds/snare.mp3");
 const CRASH = new Audio("./sounds/crash.mp3");
 
+function makeSound(key) {
+  switch (key) {
+    case "a":
+      TOM1.play();
+      break;
+    case "s":
+      TOM2.play();
+      break;
+    case "d":
+      TOM3.play();
+      break;
+    case "f":
+      TOM4.play();
+      break;
+    case "j":
+      KICK.play();
+      break;
+    case "k":
+      SNARE.play();
+      break;
+    case "l":
+      CRASH.play();
+      break;
+    default:
+      console.log(this.id);
+      break;
+  }
+}
+
+// mouse click
 let buttons = document.querySelectorAll(".drum")
 for (let btn of buttons) {
-  btn.addEventListener("click", function () {
-    switch (this.id) {
-      case "tom1":
-        TOM1.play();
-        break;
-      case "tom2":
-        TOM2.play();
-        break;
-      case "tom3":
-        TOM3.play();
-        break;
-      case "tom4":
-        TOM4.play();
-        break;
-      case "kick":
-        KICK.play();
-        break;
-      case "snare":
-        SNARE.play();
-        break;
-      case "crash":
-        CRASH.play();
-        break;
-    }
+  btn.addEventListener("click", function() {
+    makeSound(btn.classList[0])
   });
 }
+
+// keyboard
+document.addEventListener("keydown", function(event) {
+  makeSound(event.key);
+})
