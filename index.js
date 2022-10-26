@@ -6,6 +6,7 @@ const KICK = new Audio("./sounds/kick.mp3");
 const SNARE = new Audio("./sounds/snare.mp3");
 const CRASH = new Audio("./sounds/crash.mp3");
 
+// play sound
 function makeSound(key) {
   switch (key) {
     case "a":
@@ -33,6 +34,16 @@ function makeSound(key) {
       console.log(this.id);
       break;
   }
+  buttonAnimation(key);
+}
+
+// button press animation
+function buttonAnimation(key) {
+  let btn = document.querySelector("." + key);
+  btn.classList.add("pressed");
+  setTimeout(function() {
+    btn.classList.remove("pressed");
+  }, 100);
 }
 
 // mouse click
@@ -47,3 +58,5 @@ for (let btn of buttons) {
 document.addEventListener("keydown", function(event) {
   makeSound(event.key);
 })
+
+
